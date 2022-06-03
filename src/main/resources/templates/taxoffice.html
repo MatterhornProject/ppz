@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/form_styles.css}" />
+    <title>Wyszukaj urząd skarbowy</title>
+</head>
+<body>
+<form th:method = "POST" th:action="@{/select_voivodeship}" th:object="${voivodeships}">
+    <label>Wybierz województwo:
+        <select class="form-control" onchange="this.form.submit()"  id="voivodeship" th:name="voivodeship">
+            <option value=""> -- </option>
+            <option th:each="voivodeship : ${voivodeships}"
+                    th:value="${voivodeship.getId()}"
+                    th:text="${voivodeship.getName()}"
+                    th:selected="${voivodeship.getId().equals(voivodeship_selected)}">
+            </option>
+        </select>
+    </label>
+</form>
+
+<form th:method = "POST" th:action="@{/select_city}" th:object="${cities}">
+    <label>Wybierz miasto:
+        <select class="form-control" onchange="this.form.submit()"  id="city" th:name="city">
+            <option value=""> -- </option>
+            <option th:each="city : ${cities}"
+                    th:value="${city.getId()}"
+                    th:text="${city.getName()}"
+                    th:selected="${city.getId().equals(city_selected)}" >
+            </option>
+        </select>
+    </label>
+
+</form>
+<table>
+    <thead>
+    <tr>
+        <th> Lp </th>
+        <th> Nazwa urzędu skarbowego </th>
+        <th> Adres </th>
+        <th> Kod pocztowy </th>
+        <th> Miasto </th>
+        <th> Telefon </th>
+        <th> Fax </th>
+        <th> Email </th>
+        <th> WWW </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="number, itemStat : *{taxoffices_details}">
+        <td><span th:text="${itemStat.index}"></span></td>
+        <td><span th:text="${taxoffices_details[__${itemStat.index}__].getTaxoffice_name()}"></span></td>
+        <td><span th:text="${taxoffices_details[__${itemStat.index}__].getStreet()}"></span></td>
+        <td><span th:text="${taxoffices_details[__${itemStat.index}__].getZipcode()}"></span></td>
+        <td><span th:text="${taxoffices_details[__${itemStat.index}__].getCity()}"></span></td>
+        <td><span th:text="${taxoffices_details.get(itemStat.index).phone}"></span></td>
+        <td><span th:text="${taxoffices_details.get(itemStat.index).fax}"></span></td>
+        <td><span th:text="${taxoffices_details.get(itemStat.index).email}"></span></td>
+        <td><span th:text="${taxoffices_details.get(itemStat.index).www}"></span></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
