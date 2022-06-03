@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <title>Walidacja</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/form_styles.css}" />
+</head>
+<body>
+<div>
+<p th:class="containerIntro">Proszę podać numer</p>
+    <p th:class="containerIntro">PESEL</p>
+</div>
+<!--<form th:method = "POST" th:action="@{/validate}" th:object="${numbers}" modelAttribute="numbers">
+    <table>
+    <tr>
+    <td th:each="number, itemStat : *{numbers} "><input th:type="text" th:size="2" th:maxlength="1" th:field="*{numbers[__${itemStat.index}__]}" /></td>
+    </tr>
+    </table>
+    <button>Sprawdź</button>
+</form>-->
+
+
+<form th:method = "POST" th:action="@{/validate_pesel}" th:object="${numbersList}" modelAttribute="numbers">
+    <table>
+        <tr>
+    <td th:each="number, itemStat : *{numbersList}">
+       <!-- <li th:text="${number}"></li>-->
+        <input th:type="number" min="0" max="9" th:size="2" th:maxlength="1" th:field="*{numbersList[__${itemStat.index}__]}" />
+        <span th:each="err : ${#fields.errors('numbersList[__${itemStat.index}__]')}" th:text="${err}"></span>
+    </td>
+        </tr>
+    </table>
+    <span th:class="error" th:each="err : ${#fields.errors('numbersList')}" th:text="${err}"></span></br></br>
+    <button>Sprawdź</button>
+</form>
+</body>
+</html>
