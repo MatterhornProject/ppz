@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Podany numer REGON jest...</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/form_styles.css}" />
+</head>
+<body>
+<h1>Weryfikacja numeru REGON</h1></br>
+<div class="container">
+    <p th:class="containerIntro">Podany numer REGON jest:</p> <p th:class= "containerIntro" th:text="${numbersList.result}"></p>
+    <h3>Numer seryjny: </h3><p th:text="${numbersList.getSerial_number()}"></p>
+    <h3>Numer województwa: </h3><p th:text="${numbersList.getVoivodeship_code()}"></p>
+</div>
+</body>
+</html>
