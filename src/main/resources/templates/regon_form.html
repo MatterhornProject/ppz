@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org" lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <title>Walidacja numeru REGON</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/form_styles.css}" />
+</head>
+<body>
+<div class="container">
+    <p th:class="containerIntro">Proszę podać numer</p>
+    <p th:class="containerIntro" th:text="REGON"></p>
+</div>
+<form th:method = "POST" th:action="@{/validate_regon}" th:object="${numbersList}" modelAttribute="numbers">
+    <table>
+        <tr>
+            <td th:each="number, itemStat : *{numbersList9}">
+                <div class="div_label">
+                <input th:type="number" min="0" max="9" th:size="3" th:maxlength="1" th:field="*{numbersList9[__${itemStat.index}__]}" />
+                    <label for="${itemStat.index}" th:text="${itemStat.index}+1">index</label>
+                </div>
+            <p th:each="err : ${#fields.errors('numbersList9[__${itemStat.index}__]')}" th:text="${err}" th:class="error"></p>
+            </td>
+            <td th:each="number, itemStat: *{numbersList14}">
+                <div class="div_label">
+                    <input id ="${itemStat.index}" th:type="number" min="0" max="9" th:size="3" th:maxlength="1" th:field="*{numbersList14[__${itemStat.index}__]}" />
+                    <label for="${itemStat.index}" th:text="${itemStat.index}+10">index</label>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+    <span th:class="span_regon9_error" th:each="err : ${#fields.errors('numbersList9')}" th:text="${err}"></span></br>
+    <span th:class="span_regon14_error" th:each="err : ${#fields.errors('numbersList14')}" th:text="${err}"></span></br>
+    <button th:class="button_submit_regon">Sprawdź</button>
+</form>
+</body>
+</html>
