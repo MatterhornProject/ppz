@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <title>Walidacja numeru NIP</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/form_styles.css}" />
+</head>
+<body>
+<div class="container">
+    <p th:class="containerIntro">Proszę podać numer</p>
+    <p th:class="containerIntro" th:text="NIP"></p>
+</div>
+<form th:method = "POST" th:action="@{/validate_nip}" th:object="${numbersList}" modelAttribute="numbers">
+    <table>
+        <tr>
+            <td th:each="number, itemStat : *{numbersList}">
+                <input th:type="number" min="0" max="9" th:size="2" th:maxlength="1" th:field="*{numbersList[__${itemStat.index}__]}" />
+                <span th:each="err : ${#fields.errors('numbersList[__${itemStat.index}__]')}" th:text="${err}"></span>
+            </td>
+        </tr>
+    </table>
+    <button>Sprawdź</button>
+</form>
+</body>
+</html>

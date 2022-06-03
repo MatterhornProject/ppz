@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Podany NIP jest..</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/form_styles.css}" />
+</head>
+<body>
+<h1>Weryfikacja numeru NIP</h1></br>
+<div class="container">
+    <p th:class="containerIntro">Podany numer NIP jest:</p> <p th:class= "containerIntro" th:text="${numbersList.result}"></p>
+    <h3>Numer urzędu skarbowego, który nadał sprawdzany NIP: </h3><p th:text="${numbersList.tax_office_id}"></p>
+    <h3>Nazwa urzędu skarbowego, który nadał sprawdzany NIP: </h3><p th:text="${numbersList.tax_office_name}"></p><button>Szczegóły</button>
+</div>
+<div>
+    <h3></h3>
+</div>
+</body>
+</html>
