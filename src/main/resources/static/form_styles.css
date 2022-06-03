@@ -1,0 +1,57 @@
+.div_pesel{
+  display: inline;
+}
+.input{
+  width: 20%;
+}
+.containerIntro{
+  display: inline /*!important*/;
+  font-size: 20px;
+  font-weight: bolder;
+}
+.div_label label{
+ /* display: inline;*/
+  margin-left: 0.8em;
+ /* padding-top: 1.5em;*/
+}
+.div_label{
+  width:45px;
+  font-weight: bold;
+}
+.div_label input,
+.div_label label{
+  display: inline-flex;
+}
+.span_regon9_error{
+  /*top: 15em;*/
+  color: red;
+  margin-left: 4em;
+  margin-top: 2em;
+  position: relative;
+  display: inline-block;
+ /* box-sizing: border-box;*/
+}
+.span_regon14_error{
+  color: red;
+  margin-left: 4em;
+  margin-top: 1.2em;
+  display: inline-block;
+}
+.button_submit_regon{
+  margin-left: 24em;
+  margin-top: 2em;
+}
+.error {
+  color: red;
+  position: fixed;
+  top: 4em;
+}
+table {
+ table-layout: fixed;
+ /* width: 100%;*/
+}
+
+td {
+  word-wrap: break-word;
+ /* height: 120px;*/
+}
